@@ -37,10 +37,15 @@ void print_link_list(Node* head)
     }
 }
 
-void delete_at_head(Node* &head)
+void delete_at_any_pos(Node* &head,int idx)
 {
-    Node *deleteNode = head;
-    head = head->next; // main connection
+    Node *temp = head;
+    for (int i = 0; i < idx - 1;i++)
+    {
+        temp = temp->next;
+    }
+    Node *deleteNode = temp->next;
+    temp->next = temp->next->next;  // main connection
     delete deleteNode;
 }
 
@@ -60,7 +65,7 @@ int main()
         }
         insert_at_tail(head, tail, val);
     }
-    delete_at_head(head);
+    delete_at_any_pos(head,2);
     //delete_at_head(head);
     //delete_at_head(head);
     print_link_list(head);
